@@ -21,9 +21,6 @@ def getProfileString(profile, side):
     Purpose: 
     """
     return f"Compare {side}: {profile['name']}, a {profile['description']}, from {profile['country']}"
-A
-
-
 
 
 def declearResults(score):
