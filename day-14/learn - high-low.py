@@ -1,65 +1,71 @@
+from re import A
 from art import logo, vs
 from game_data import data
 import random
 # from os import system, name
+from IPython.display import clear_output
+import os
+clear = lambda : os.system('cls') # or clear for Linux
 
 
-def select_item(data):
+def pickProfile(data):
+    """
+    Purpose: data
+    """
     value = random.choice(data)
     data.remove(value)
     return [value, data]
 
-
-def sideToString(side_variable, side):
-    return f"Compare {side}: {side_variable['name']}, a {side_variable['description']}, from {side_variable['country']}"
-
-
-def clear():
-    if name == "nt":
-        _ = system("cls")
-    else:
-        _ = system("clear")
-    print(logo)
+def getProfileString(profile, side):
+    """
+    Purpose: 
+    """
+    return f"Compare {side}: {profile['name']}, a {profile['description']}, from {profile['country']}"
+A
 
 
-def compare(sideA, sideB):
-    if sideA['follower_count'] >= sideB['follower_count']:
-        return True
-    else:
-        return False
 
+
+def declearResults(score):
+    clear_output(wait=True)
+    clear()
+        
 
 def game(data):
-    print(logo)
-    sideA, data = select_item(data)
-    score = 0
-    result = False
-    # while len(data) > 0:
-    #     sideB, data = select_item(data)
-    #     message = f"{sideToString(sideA,'A')}\n{vs}\n{sideToString(sideB,'B')}"
-    #     print(message)
-    #     anwser = (input("Who has more followers? Type 'A' or 'B': ")).lower()
-    #     if anwser == "a":
-    #         result = compare(sideA, sideB)
-    #         sideA = sideB
-    #     elif anwser == "b":
-    #         result = compare(sideB, sideA)
-    #     else:
-    #         result = False
-
-    #     if result == False:
-    #         break
-    #     else:
-    #         score += 1
-    #         clear()
-    #         print(f"You're Right! Current score: {score}")
-
-    # if result == False:
-    #     clear()
-    #     print(f"Sorry, that's wrong. Final score: {score}")
-    # else:
-    #     clear()
-    #     print(f"Congrats, you got them all correct! Final score: {score}")
-
-
+    """ Purpose: Run game """
+    target = len(data)
+    sideA,data = pickProfile(data)
+    score=0
+    while True: 
+        declearResults(score)
+        scoreInfo = ''
+        if score == target:
+            print(f"{logo}\nYour score is 100%")
+            break
+        elif score :   
+            scoreInfo = f"You're Right! Current score: {score}\n"
+        sideB,data = pickProfile(data)
+        print(f"{logo}\n{scoreInfo}{getProfileString(sideA, 'A')}\n{vs}\n{getProfileString(sideB, 'B')}") 
+        ip = input().lower()
+        while  ip  not in ['a', 'b']:
+            print(f"Please provide valid input A or B")
+            ip = input().lower()
+        if sideA['follower_count'] >= sideB['follower_count']:
+            if ip == 'a':
+                score += 1
+                sideA = sideB
+            else:
+                declearResults(score)
+                print(f"{logo}\nSorry, that's wrong. Final score: {score}")
+            
+                break
+        else:
+            if ip == 'b':
+                score += 1
+                sideA = sideB
+            else:
+                declearResults(score)
+                print(f"{logo}\nSorry, that's wrong. Final score: {score}")
+                
+                break
 game(data)
