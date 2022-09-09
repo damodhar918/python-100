@@ -56,7 +56,8 @@ def reset_profit():
     global profit
     profit = 0
 
-while True:
+
+while 1:
     choice = input("What would you like? (espresso/latte/cappuccino): ")
     if choice.lower() in ['espresso', 'latte', 'cappuccino']:
         drink = menu[choice]
