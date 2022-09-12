@@ -8,7 +8,7 @@ import time
 screen = Screen()
 screen.setup(width=600, height=640)
 screen.bgcolor("black")
-screen.title("My Snake Game")  # Title of the game
+screen.title("DJ Snake Game")  # Title of the game
 screen.tracer(0)  # Turn off the animation
 
 #TODO: 1.Create a snake body
