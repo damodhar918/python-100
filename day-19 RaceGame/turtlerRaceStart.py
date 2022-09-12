@@ -15,9 +15,6 @@ for turtle_index in range(len(colors)):
     new_turtle.goto(x=-230,y=y_pos[turtle_index])
     all_turtles.append(new_turtle)
     
-    
-    
-    
 flag = True
 while flag:
     for turtle in all_turtles:
