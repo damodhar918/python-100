@@ -38,16 +38,16 @@ while True:
         ball.bounce_y()
     
     #TODO: Detect collision with paddle
-    if ball.distance(r_paddle) < 60 and ball.xcor() > 320 or ball.distance(l_paddle) < 60 and ball.xcor() < -320:
+    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
  
         
     #TODO: Detect when paddle misses
-    if ball.xcor() > 360 :
+    if ball.xcor() > 380 :
         ball.reset_position()
         score.l_point()
         
-    if ball.xcor() < -360:
+    if ball.xcor() < -380:
         ball.reset_position()
         score.r_point()
         
