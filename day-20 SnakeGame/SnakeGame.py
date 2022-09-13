@@ -13,7 +13,6 @@ screen.tracer(0)  # Turn off the animation
 
 #TODO: 1.Create a snake body
 snake = Snake()
-# snake = Snake()
 
 #TODO: 4.Create a food
 food = Food() 
@@ -27,32 +26,40 @@ screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")    
 screen.onkey(snake.right, "Right")
+
     
 #TODO 2.Create a snake movement
-flag = True
-while flag:
-    screen.update()
-    time.sleep(0.1)
-    snake.move()
-    
-    #TODO 5.Detect collision with food
-    if snake.head.distance(food) < 18:
-        food.refresh()
-        scoreInfo.increase_score()
-        snake.extend()
+def runGame():
+    flag = True
+    while flag:
+        screen.update()
+        time.sleep(0.1)
+        snake.move()
         
-        # print("nom nom nom")
-    #TODO 6.Detect collision with wall
-    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -310:
-        scoreInfo.game_over()
-        flag = False
-    
-    #TODO 7.Detect collision with tail
-    for segment in snake.segments[1:]:
-        if snake.head.distance(segment) < 10 :
-            scoreInfo.game_over()
+        #TODO 5.Detect collision with food
+        if snake.head.distance(food) < 18:
+            food.refresh()
+            scoreInfo.increase_score()
+            snake.extend()
+            
+            # print("nom nom nom")
+        #TODO 6.Detect collision with wall
+        if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -310:
+            scoreInfo.reset()
             flag = False
-            break
+        
+        #TODO 7.Detect collision with tail
+        for segment in snake.segments[1:]:
+            if snake.head.distance(segment) < 10 :
+                scoreInfo.reset()
+                flag = False
+                break
+
+runGame()
+
+def reset_and_runGame():
+    snake.reset()
+    runGame()
     
-    
+screen.onkey(reset_and_runGame, "space")
 screen.exitonclick()
