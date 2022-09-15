@@ -27,14 +27,10 @@ while ans != 'Exit' and len(guess_ans)<=50 :
         guess_ans.append(ans)
 
 
-miss_state=[]
-for state in data.state.to_list():
-    if state not in guess_ans:
-        miss_state.append(state)
-        
+miss_state=[ state for state in data.state.to_list() if state not in guess_ans]   
+print(miss_state)
 pd.DataFrame(miss_state).to_csv(r'day-25 pandas\us-states-game-start\miss_state.csv', index=False, header=['state'])
         
-print(miss_state)
 
 def get_mouse_click(x,y):
     print(x,y)
