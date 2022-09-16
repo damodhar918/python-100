@@ -1,5 +1,6 @@
 import pandas
 
+
 data = pandas.read_csv(r"C:\Users\jdamodhar\Desktop\python_essential-\python-100\day-30 error exception\nato_phonetic_alphabet.csv")
 
 phonetic_dict = {row.letter: row.code for (index, row) in data.iterrows()}
