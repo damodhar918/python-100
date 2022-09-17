@@ -1,5 +1,6 @@
 
 from tkinter import *
+from tkinter import messagebox
 import time
 # ---------------------------- CONSTANTS ------------------------------- #
 
@@ -32,13 +33,17 @@ def start_timer():
         #if count 8
         t_label.config(text="Walk Break", fg=RED)
         count_down(LONG_BREAK_MIN*60)
-    elif count > 8:
-        print("Done",count)
-        reset_timer()
+        messagebox.showinfo(title='Walk Break', message=f"Get out from sitting position")
+        
+    # elif count > 8:
+    #     print("Done",count)
+    #     reset_timer()
     elif not count % 2 :
         #if count the 1,3,5,7
         t_label.config(text="Break", fg=PINK)
         count_down(SHORT_BREAK_MIN*60)
+        messagebox.showinfo(title='Break', message=f"Breat in and out")
+
     elif count % 2:
         #if count 2,4,6
         t_label.config(text="Work", fg=GREEN)
